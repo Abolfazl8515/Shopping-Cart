@@ -35,13 +35,6 @@ const removeItemCart = (id, price) => {
   idItem.remove();
 };
 
-// const removeAllItemsCart = (item) => {
-//   const allItem = document.querySelectorAll(item);
-//   allItem.forEach((i) => {
-//     i.remove();
-//   });
-// };
-
 btnsAddToCart.forEach((btn) => {
   const elementCartItems = document.querySelector(".items-Cart");
   btn.addEventListener("click", () => {
