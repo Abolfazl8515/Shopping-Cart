@@ -15,6 +15,8 @@ const backDropModal = document.querySelector(".back-drop");
 const modal = document.querySelector(".modal");
 const shop = document.querySelector(".shop");
 const confirmBtn = document.querySelector(".confirm");
+const totalPrice = document.querySelector("#total-Price");
+const clearBtn = document.querySelector(".clear");
 
 const showModal = () => {
   backDropModal.classList.remove("hidden");
@@ -26,12 +28,50 @@ const hiddenModal = () => {
   modal.classList.add("hidden");
 };
 
+const removeItemCart = (id, price) => {
+  const idItem = document.getElementById(id);
+  const priceItem = price;
+  totalPrice.innerHTML = Number(totalPrice.innerHTML) - priceItem;
+  idItem.remove();
+};
+
+// const removeAllItemsCart = (item) => {
+//   const allItem = document.querySelectorAll(item);
+//   allItem.forEach((i) => {
+//     i.remove();
+//   });
+// };
+
 btnsAddToCart.forEach((btn) => {
+  const elementCartItems = document.querySelector(".items-Cart");
   btn.addEventListener("click", () => {
     btn.textContent = "in cart";
     cartNumberItems.innerHTML = Number(cartNumberItems.innerHTML) + 1;
     const selectedProduct = products.find((item) => {
       return item.id == btn.parentElement.parentElement.id;
+    });
+
+    elementCartItems.innerHTML += `
+      <div class="item" id=${selectedProduct.id}>
+          <div class="image-Item">
+              <img src=${selectedProduct.src} width="90" height="50" alt="Product">
+          </div>
+          <div class="name-Product">
+              <p>${selectedProduct.price}</p>
+          </div>
+          <div class="btn-Remove">
+              <button onclick="removeItemCart(${selectedProduct.id},${selectedProduct.price})">Delete</button>
+          </div>
+      </div>
+    `;
+
+    totalPrice.innerHTML = Number(totalPrice.innerHTML) + selectedProduct.price;
+    clearBtn.addEventListener("click", () => {
+      const allItems = elementCartItems.children;
+      for (const item of allItems) {
+        item.remove();
+      }
+      totalPrice.innerHTML = 0;
     });
   });
 });
