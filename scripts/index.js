@@ -13,6 +13,18 @@ const btnsAddToCart = document.querySelectorAll(".add-To-Cart");
 let cartNumberItems = document.querySelector("#numberCart");
 const backDropModal = document.querySelector(".back-drop");
 const modal = document.querySelector(".modal");
+const shop = document.querySelector(".shop");
+const confirmBtn = document.querySelector(".confirm");
+
+const showModal = () => {
+  backDropModal.classList.remove("hidden");
+  modal.classList.remove("hidden");
+};
+
+const hiddenModal = () => {
+  backDropModal.classList.add("hidden");
+  modal.classList.add("hidden");
+};
 
 btnsAddToCart.forEach((btn) => {
   btn.addEventListener("click", () => {
@@ -23,3 +35,7 @@ btnsAddToCart.forEach((btn) => {
     });
   });
 });
+
+shop.addEventListener("click", showModal);
+backDropModal.addEventListener("click", hiddenModal);
+confirmBtn.addEventListener("click", hiddenModal);
