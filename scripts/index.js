@@ -32,6 +32,7 @@ const removeItemCart = (id, price) => {
   const idItem = document.getElementById(id);
   const priceItem = price;
   totalPrice.innerHTML = Number(totalPrice.innerHTML) - priceItem;
+  cartNumberItems.innerHTML--;
   idItem.remove();
 };
 
@@ -65,6 +66,7 @@ btnsAddToCart.forEach((btn) => {
         item.remove();
       }
       totalPrice.innerHTML = 0;
+      cartNumberItems.innerHTML = 0;
     });
   });
 });
