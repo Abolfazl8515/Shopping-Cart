@@ -55,7 +55,7 @@ btnsAddToCart.forEach((btn) => {
               <p>${selectedProduct.price}</p>
           </div>
           <div class="btn-Remove">
-              <button onclick="removeItemCart(${selectedProduct.id},${selectedProduct.price},${button})">Delete</button>
+              <button onclick="removeItemCart(${selectedProduct.id},${selectedProduct.price})">Delete</button>
           </div>
       </div>
     `;
