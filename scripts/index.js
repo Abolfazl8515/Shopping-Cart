@@ -28,24 +28,51 @@ const hiddenModal = () => {
   modal.classList.add("hidden");
 };
 
-const removeItemCart = (id, price, textBtn) => {
+const removeItemCart = (id, price) => {
   const idItem = document.getElementById(id);
   const priceItem = price;
+  const items = document.querySelectorAll(".product");
   totalPrice.innerHTML = Number(totalPrice.innerHTML) - priceItem;
   cartNumberItems.innerHTML--;
   idItem.remove();
-  textBtn.innerHTML = "add to cart";
+  items.forEach((i) => {
+    if (i.id == id) {
+      i.lastElementChild.firstElementChild.innerHTML = "add to cart";
+    }
+  });
+};
+
+const diminish = (id, price) => {
+  const product = document.getElementById(id);
+  const numberProduct = product.querySelector(".number-product");
+  numberProduct.innerHTML = Number(numberProduct.innerHTML) - 1;
+  if (numberProduct.innerHTML == 1) {
+    numberProduct.previousElementSibling.style.display = "none";
+  }
+  totalPrice.innerHTML = Number(totalPrice.innerHTML) - price;
+};
+
+const increase = (id, price) => {
+  const product = document.getElementById(id);
+  const numberProduct = product.querySelector(".number-product");
+  numberProduct.innerHTML = Number(numberProduct.innerHTML) + 1;
+  if (numberProduct.innerHTML !== 1) {
+    numberProduct.previousElementSibling.style.display = "flex";
+  }
+  totalPrice.innerHTML = Number(totalPrice.innerHTML) + price;
 };
 
 btnsAddToCart.forEach((btn) => {
   const elementCartItems = document.querySelector(".items-Cart");
   btn.addEventListener("click", () => {
+    if (btn.innerHTML === "in cart") {
+      return;
+    }
     btn.textContent = "in cart";
     cartNumberItems.innerHTML = Number(cartNumberItems.innerHTML) + 1;
-    const selectedProduct = products.find((item) => {
-      return item.id == btn.parentElement.parentElement.id;
-    });
-
+    const selectedProduct = products.find(
+      (item) => item.id == btn.parentElement.parentElement.id
+    );
     elementCartItems.innerHTML += `
       <div class="item" id=${selectedProduct.id}>
           <div class="image-Item">
@@ -53,6 +80,11 @@ btnsAddToCart.forEach((btn) => {
           </div>
           <div class="name-Product">
               <p>${selectedProduct.price}</p>
+          </div>
+          <div class="increment-decrement">
+              <div class="decrement" style="display:none" onclick="diminish(${selectedProduct.id},${selectedProduct.price})">-</div>
+              <div class="number-product">1</div>
+              <div class="increment" onclick="increase(${selectedProduct.id},${selectedProduct.price})">+</div>
           </div>
           <div class="btn-Remove">
               <button onclick="removeItemCart(${selectedProduct.id},${selectedProduct.price})">Delete</button>
