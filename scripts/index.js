@@ -10,7 +10,7 @@ const products = [
 ];
 
 const btnsAddToCart = document.querySelectorAll(".add-To-Cart");
-let cartNumberItems = document.querySelector("#numberCart");
+const cartNumberItems = document.querySelector("#numberCart");
 const backDropModal = document.querySelector(".back-drop");
 const modal = document.querySelector(".modal");
 const shop = document.querySelector(".shop");
