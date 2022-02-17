@@ -175,10 +175,43 @@ h1 {
 }
 
 .modal-content .items-Cart .item .name-Product {
-  width: 30%;
+  width: 20%;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.modal-content .items-Cart .item .increment-decrement {
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content .items-Cart .item .increment-decrement .decrement {
+  width: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #f00;
+  border-radius: 5px;
+  color: #f00;
+  cursor: pointer;
+}
+
+.modal-content .items-Cart .item .increment-decrement .number-product {
+  padding: 0 20px;
+}
+
+.modal-content .items-Cart .item .increment-decrement .increment {
+  width: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid rgb(45, 45, 156);
+  border-radius: 5px;
+  color: rgb(45, 45, 156);
+  cursor: pointer;
 }
 
 .modal-content .items-Cart .item .btn-Remove {
