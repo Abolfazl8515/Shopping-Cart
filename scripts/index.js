@@ -30,7 +30,8 @@ const hiddenModal = () => {
 
 const removeItemCart = (id, price) => {
   const idItem = document.getElementById(id);
-  const priceItem = price;
+  const numberProduct = idItem.querySelector(".number-product");
+  const priceItem = price * Number(numberProduct.innerHTML);
   const items = document.querySelectorAll(".product");
   totalPrice.innerHTML = Number(totalPrice.innerHTML) - priceItem;
   cartNumberItems.innerHTML--;
